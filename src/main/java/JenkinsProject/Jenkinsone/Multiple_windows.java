@@ -5,7 +5,10 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -49,4 +52,27 @@ public class Multiple_windows {
 		driver.switchTo().window(MainWindow);
 		driver.quit();
 	}
+	
+	@Test
+	public  void check2() throws Exception{
+		WebDriverManager.firefoxdriver().setup();
+		WebDriver driver = new FirefoxDriver();
+		 driver.manage().window().maximize();			
+	     driver.get("https://jqueryui.com/");	
+	     Thread.sleep(1000);
+	     driver.findElement(By.xpath("//a[text()='Draggable']")).click();
+	     Thread.sleep(1000);
+	     driver.findElement(By.xpath("//a[text()='Droppable']")).click();
+	     Thread.sleep(1000);
+	     WebElement main_frame=driver.findElement(By.className("demo-frame"));
+	     driver.switchTo().frame(main_frame);
+	     WebElement draggable=driver.findElement(By.xpath("//p[text()='Drag me to my target']"));
+	     WebElement droppable=driver.findElement(By.xpath("//p[text()='Drop here']"));
+	     Actions actions=new Actions(driver);
+	     actions.dragAndDrop(draggable, droppable).build().perform();
+	     Thread.sleep(1000);
+	     driver.quit();    
+	}
+
+	
 }
