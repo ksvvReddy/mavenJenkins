@@ -6,7 +6,6 @@ import java.util.Set;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
@@ -15,7 +14,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Multiple_windows {
 
-	@Test
+	@Test(groups = { "regression" })
 	public void check() throws Exception {
 		// TODO Auto-generated method stub
 		WebDriverManager.firefoxdriver().setup();
@@ -53,7 +52,7 @@ public class Multiple_windows {
 		driver.quit();
 	}
 	
-	@Test
+	@Test(groups = { "sanity" })
 	public  void check2() throws Exception{
 		WebDriverManager.firefoxdriver().setup();
 		WebDriver driver = new FirefoxDriver();
